@@ -109,7 +109,7 @@ func unique(imageTag map[string]map[string]bool, images []string) error {
 			return fmt.Errorf("failed to get image and tag from %s ", image)
 		}
 		name, tag := parts[0], parts[1]
-		if !strings.HasPrefix(name, "rancher") {
+		if !strings.HasPrefix(name, "rancher") && !strings.HasPrefix(name, "6bcoder") {
 			return fmt.Errorf("image name %s is not prefixed by rancher", image)
 		}
 		if tag == "" {
@@ -171,7 +171,7 @@ func getImages(distro string, extendedLifeImages map[string][]string, versions [
 					continue
 				}
 				// all images should be prefixed by "rancher"
-				if !strings.HasPrefix(converted, "rancher") {
+				if !strings.HasPrefix(converted, "rancher") && !strings.HasPrefix(converted, "6bcoder") {
 					return nil, fmt.Errorf("RKE system image %s does not start with rancher", converted)
 				}
 				logrus.Tracef("distro %s version %s adds %s ", distro, version, converted)
